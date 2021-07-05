@@ -1,0 +1,1 @@
+const t={key:"v-2482c420",path:"/tags/vue.html",title:"",lang:"zh-CN",frontmatter:{permalinkPattern:"/posts/:slug.html"},excerpt:"",headers:[],date:"0000-00-00",updated:"0000-00-00",filePathRelative:null};export{t as data};

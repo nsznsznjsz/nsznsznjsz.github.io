@@ -1,0 +1,1 @@
+const e={key:"v-1aedbb98",path:"/categories/computer-science/principle-of-compiler.html",title:"",lang:"zh-CN",frontmatter:{permalinkPattern:"/posts/:slug.html"},excerpt:"",headers:[],date:"0000-00-00",updated:"0000-00-00",filePathRelative:null};export{e as data};

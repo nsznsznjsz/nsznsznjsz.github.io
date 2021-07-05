@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <link rel="icon" href="/logo.png"><title>串 | Celeste's blog</title><meta name="description" content="Technique && Life"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.21">
+    <link rel="modulepreload" href="/assets/app.cad05c30.js"><link rel="modulepreload" href="/assets/string.html.bf4191dd.js"><link rel="modulepreload" href="/assets/string.html.4c54a7a9.js">
+    <link rel="stylesheet" href="/assets/style.b2f4734d.css">
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="layout"><main class="layout__main"><!--[--><article class="page prose max-w-none"><!--[--><h1 id="string" tabindex="-1"><a class="header-anchor" href="#string" aria-hidden="true">#</a> String</h1><div class="language-C ext-C line-numbers-mode"><pre class="language-C"><code>assign(chars)
+insert(S, pos, T) // 插入串
+del(S, pos, len)
+copy(T)
+compare(S, T)
+getLength(S)
+clear(S)
+cat(S, T) // 连接
+subString(S, pos, len)
+subIndex(S, T, pos) // 若 T 为 S 子串, 返回 T 在 S[pos] 后第一次出现的索引
+destory(S)
+</code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><h2 id="实现" tabindex="-1"><a class="header-anchor" href="#实现" aria-hidden="true">#</a> 实现</h2><h3 id="定长串" tabindex="-1"><a class="header-anchor" href="#定长串" aria-hidden="true">#</a> 定长串</h3><div class="language-C ext-C line-numbers-mode"><pre class="language-C"><code>typedef struct {
+  char ch[MAX_SIZE];
+  int len;
+} String
+</code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h3 id="链串" tabindex="-1"><a class="header-anchor" href="#链串" aria-hidden="true">#</a> 链串</h3><p>线性字符串</p><div class="language-C ext-C line-numbers-mode"><pre class="language-C"><code>typedef struct {
+  char * ch;
+  int len;
+} String
+</code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h3 id="块链串" tabindex="-1"><a class="header-anchor" href="#块链串" aria-hidden="true">#</a> 块链串</h3><div class="language-C ext-C line-numbers-mode"><pre class="language-C"><code>typedef struct Block {
+  char ch[BOLOCK_SIZE];
+  struct Block * next;
+} Block;
+
+typedef struct {
+  Block * head;
+  Block * tail;
+  int len;
+} String
+</code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h2 id="模式匹配" tabindex="-1"><a class="header-anchor" href="#模式匹配" aria-hidden="true">#</a> 模式匹配</h2><ul><li>Brute-Force 算法 (回溯)</li><li>KMP (无回溯)</li></ul><!--]--></article><!--]--></main><aside class="layout__sub"><!--[--><div>Sidebar</div><!--]--></aside><aside class="layout__extra"><!--[--><div class="sticky top-12 p-4 mr-8"><h3 class="pb-1 text-lg font-bold select-none">CATALOG</h3><ul><!--[--><li class="catalog__item"><a aria-current="page" href="/posts/string.html#%E5%AE%9E%E7%8E%B0" class="router-link-active router-link-exact-active catalog__link">实现</a><!----></li><li class="catalog__item"><a aria-current="page" href="/posts/string.html#%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D" class="router-link-active router-link-exact-active catalog__link">模式匹配</a><!----></li><!--]--></ul></div><!--]--></aside><header class="layout__header"><!--[--><div class="header h-full flex flex-col justify-center items-center relative overflow-hidden"><div class="flex flex-col items-start"><div class="z-30 min-w-max"><!--[--><a href="/tags/data-structure.html" class="header__pill-link" style="--pill-color:#9c27b0;">数据结构</a><!--]--><a class="header__pill-link" href="https://github.com/nsznsznjsz/blog/edit/main/2019/10/24/string.md" target="_blank">编辑此页</a></div><h1 class="my-6 z-30 text-white text-8xl font-medium">串</h1></div><div class="flex z-30"><div class="header__meta-item">发表于 2019-10-24</div><div class="header__meta-item">更新于 2021-3-1</div></div><div class="flex z-30"><div class="header__meta-item"> 分类于 <!--[--><span class="header__categories"><!--[--><a href="/categories/computer-science.html" class="header__category">计科</a><a href="/categories/computer-science/data-structure.html" class="header__category">数据结构</a><a href="/categories/computer-science/data-structure/string.html" class="header__category">string</a><!--]--></span><!--]--></div></div></div><!--]--></header><footer class="layout__footer"><!--[--><div class="flex flex-col items-center m-4 py-4 text-gray-400 text-sm select-none"><span>Copyright © 2021 – 2021 Celeste</span><span>Powered by <a href="https://vuepress.vuejs.org/" target="_blank" class="underline">Vuepress</a></span></div><!--]--></footer><nav class="layout__nav overflow-hidden z-50"><!--[--><div class="navbar navbar_transparent" style=""><ul class="flex"><li class="navbar__link"><a href="/" class="font-bold">CELESTE&#39;S BLOG</a></li></ul><ul class="flex"><!--[--><li class="navbar__link"><a href="/archives.html" class="">ARCHIVES</a></li><li class="navbar__link"><a href="/categories.html" class="">CATEGORIES</a></li><li class="navbar__link"><a href="/tags.html" class="">TAGS</a></li><li class="navbar__link"><a href="/about.html" class="">ABOUT</a></li><!--]--></ul></div><!--]--></nav><!----></div><!--]--></div>
+    <script type="module" src="/assets/app.cad05c30.js" defer></script>
+  </body>
+</html>

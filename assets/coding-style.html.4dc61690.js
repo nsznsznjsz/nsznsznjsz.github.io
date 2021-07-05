@@ -1,0 +1,1 @@
+const e={key:"v-1e7d4130",path:"/categories/computer-science/coding-style.html",title:"",lang:"zh-CN",frontmatter:{permalinkPattern:"/posts/:slug.html"},excerpt:"",headers:[],date:"0000-00-00",updated:"0000-00-00",filePathRelative:null};export{e as data};

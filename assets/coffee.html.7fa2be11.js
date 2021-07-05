@@ -1,0 +1,1 @@
+const e={key:"v-0e5a7a18",path:"/categories/life/coffee.html",title:"",lang:"zh-CN",frontmatter:{permalinkPattern:"/posts/:slug.html"},excerpt:"",headers:[],date:"0000-00-00",updated:"0000-00-00",filePathRelative:null};export{e as data};

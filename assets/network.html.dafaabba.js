@@ -1,0 +1,1 @@
+const e={key:"v-511d59ee",path:"/categories/computer-science/network.html",title:"",lang:"zh-CN",frontmatter:{permalinkPattern:"/posts/:slug.html"},excerpt:"",headers:[],date:"0000-00-00",updated:"0000-00-00",filePathRelative:null};export{e as data};

@@ -1,0 +1,1 @@
+import{h as e,o as a,c as r,a as s,r as p}from"./app.cad05c30.js";const t={class:"page prose max-w-none"};var n=e({props:{pageKey:{type:String,required:!1}},setup(e){const n=e;return(e,o)=>{const c=p("Content");return a(),r("article",t,[s(c,{pageKey:n.pageKey},null,8,["pageKey"])])}}});export{n as _};

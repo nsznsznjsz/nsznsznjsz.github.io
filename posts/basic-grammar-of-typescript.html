@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <link rel="icon" href="/logo.png"><title>Typescript 基本语法 | Celeste's blog</title><meta name="description" content="Technique && Life"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="VuePress 2.0.0-beta.21">
+    <link rel="modulepreload" href="/assets/app.cad05c30.js"><link rel="modulepreload" href="/assets/basic-grammar-of-typescript.html.be5945b0.js"><link rel="modulepreload" href="/assets/basic-grammar-of-typescript.html.4fc0fcdd.js">
+    <link rel="stylesheet" href="/assets/style.b2f4734d.css">
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="layout"><main class="layout__main"><!--[--><article class="page prose max-w-none"><!--[--><h1 id="typescript-基本语法" tabindex="-1"><a class="header-anchor" href="#typescript-基本语法" aria-hidden="true">#</a> Typescript 基本语法</h1><p><a href="https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md" target="_blank" rel="noopener noreferrer">TypeScript Language Specification<span><svg class="icon outbound" xmlns="http://www.w3.org/2000/svg" ariahidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><!----></span></a></p><h2 id="type" tabindex="-1"><a class="header-anchor" href="#type" aria-hidden="true">#</a> Type</h2><h3 id="enum" tabindex="-1"><a class="header-anchor" href="#enum" aria-hidden="true">#</a> Enum</h3><div class="language-typescript ext-ts line-numbers-mode"><pre class="language-typescript"><code>enum Tristate {
+  False,
+  True = 2,
+  Unknown,
+}
+
+const lie = Tristate.False
+
+// compiled, 生成一个全局变量
+var Tristate
+;(function (Tristate) {
+  Tristate[(Tristate[&quot;False&quot;] = 0)] = &quot;False&quot;
+  Tristate[(Tristate[&quot;True&quot;] = 2)] = &quot;True&quot;
+  Tristate[(Tristate[&quot;Unknown&quot;] = 3)] = &quot;Unknown&quot;
+})(Tristate || (Tristate = {}))
+
+var lie = Tristate.False
+</code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><p><strong>const enum :</strong> 编译后不包含全局变量, 而是直接替换为值, 减少寻址过程 <code>var lie = 0</code>, 可以添加编译选项<code>--preserveConstEnums</code>生成全局变量</p><h3 id="interface" tabindex="-1"><a class="header-anchor" href="#interface" aria-hidden="true">#</a> Interface</h3><ul><li>不以 I 开头, 因为并不仅仅是接口</li><li>Duck typing</li></ul><div class="language-typescript ext-ts line-numbers-mode"><pre class="language-typescript"><code>interface Point {
+  x: number
+  y: number
+}
+
+class MyPoint implements Point {
+  x: number
+  y: number // Same as Point
+}
+</code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><div class="language-typescript ext-ts line-numbers-mode"><pre class="language-typescript"><code>interface Crazy {
+  new (): {
+    hello: number
+  }
+}
+
+class CrazyClass implements Crazy {
+  constructor() {
+    return { hello: 123 }
+  }
+}
+
+// Because
+const crazy = new CrazyClass() // crazy would be { hello:123 }
+</code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><h3 id="type-alias" tabindex="-1"><a class="header-anchor" href="#type-alias" aria-hidden="true">#</a> Type Alias</h3><div class="language-typescript ext-ts line-numbers-mode"><pre class="language-typescript"><code>type Shape = Square | Rectangle
+type Pet = Cat &amp; Dog
+
+type Point = {
+  x: number
+  y: number
+}
+
+type Pointable = {
+  (): Point
+}
+</code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><h3 id="inference-and-type-alias" tabindex="-1"><a class="header-anchor" href="#inference-and-type-alias" aria-hidden="true">#</a> Inference and Type Alias</h3><h3 id="相同" tabindex="-1"><a class="header-anchor" href="#相同" aria-hidden="true">#</a> 相同</h3><ul><li>extends / union</li><li>implements</li></ul><h3 id="不同" tabindex="-1"><a class="header-anchor" href="#不同" aria-hidden="true">#</a> 不同</h3><ul><li>type <ul><li>alias</li><li>union <ul><li>interface cannot extends union type</li><li>class cannot implements union type</li></ul></li><li>&amp;</li><li>typeof</li></ul></li><li>interface <ul><li>extends</li><li>declaration merging <ul><li>公开 API 必须使用 interface</li></ul></li></ul></li></ul><h2 id="类型操作关键词" tabindex="-1"><a class="header-anchor" href="#类型操作关键词" aria-hidden="true">#</a> 类型操作关键词</h2><ul><li>!</li><li>?</li><li>readonly</li><li>keyof</li><li>typeof</li><li>in</li><li>infer</li><li>extends</li></ul><div class="language-typescript ext-ts line-numbers-mode"><pre class="language-typescript"><code>type Words = &quot;a&quot; | &quot;b&quot; | &quot;c&quot;
+type W&lt;T&gt; = T extends Words ? true : false
+type WA = W&lt;&quot;a&quot;&gt; // -&gt; true
+type WD = W&lt;&quot;d&quot;&gt; // -&gt; false
+</code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><h2 id="泛型" tabindex="-1"><a class="header-anchor" href="#泛型" aria-hidden="true">#</a> 泛型</h2><h3 id="base-usage" tabindex="-1"><a class="header-anchor" href="#base-usage" aria-hidden="true">#</a> base usage</h3><ul><li><code>function&lt;T&gt;: T {}</code></li><li><code>&lt;T&gt;(input: T) =&gt; void</code></li><li><code>interface&lt;T&gt; {}</code></li><li><code>type&lt;T&gt; = T | { [key: string] : string }</code></li></ul><h3 id="infer" tabindex="-1"><a class="header-anchor" href="#infer" aria-hidden="true">#</a> infer</h3><h3 id="内置操作类型" tabindex="-1"><a class="header-anchor" href="#内置操作类型" aria-hidden="true">#</a> 内置操作类型</h3><p><a href="https://juejin.im/post/5c2f87ce5188252593122c98" target="_blank" rel="noopener noreferrer">TypeScript 强大的类型别名<span><svg class="icon outbound" xmlns="http://www.w3.org/2000/svg" ariahidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><!----></span></a></p><h2 id="tsconfig-json" tabindex="-1"><a class="header-anchor" href="#tsconfig-json" aria-hidden="true">#</a> tsconfig.json</h2><h2 id="types" tabindex="-1"><a class="header-anchor" href="#types" aria-hidden="true">#</a> @types</h2><h2 id="features" tabindex="-1"><a class="header-anchor" href="#features" aria-hidden="true">#</a> Features</h2><ul><li>minfication #8</li></ul><!--]--></article><!--]--></main><aside class="layout__sub"><!--[--><div>Sidebar</div><!--]--></aside><aside class="layout__extra"><!--[--><div class="sticky top-12 p-4 mr-8"><h3 class="pb-1 text-lg font-bold select-none">CATALOG</h3><ul><!--[--><li class="catalog__item"><a aria-current="page" href="/posts/basic-grammar-of-typescript.html#type" class="router-link-active router-link-exact-active catalog__link">Type</a><!----></li><li class="catalog__item"><a aria-current="page" href="/posts/basic-grammar-of-typescript.html#%E7%B1%BB%E5%9E%8B%E6%93%8D%E4%BD%9C%E5%85%B3%E9%94%AE%E8%AF%8D" class="router-link-active router-link-exact-active catalog__link">类型操作关键词</a><!----></li><li class="catalog__item"><a aria-current="page" href="/posts/basic-grammar-of-typescript.html#%E6%B3%9B%E5%9E%8B" class="router-link-active router-link-exact-active catalog__link">泛型</a><!----></li><li class="catalog__item"><a aria-current="page" href="/posts/basic-grammar-of-typescript.html#tsconfig-json" class="router-link-active router-link-exact-active catalog__link">tsconfig.json</a><!----></li><li class="catalog__item"><a aria-current="page" href="/posts/basic-grammar-of-typescript.html#types" class="router-link-active router-link-exact-active catalog__link">@types</a><!----></li><li class="catalog__item"><a aria-current="page" href="/posts/basic-grammar-of-typescript.html#features" class="router-link-active router-link-exact-active catalog__link">Features</a><!----></li><!--]--></ul></div><!--]--></aside><header class="layout__header"><!--[--><div class="header h-full flex flex-col justify-center items-center relative overflow-hidden"><div class="flex flex-col items-start"><div class="z-30 min-w-max"><!--[--><a href="/tags/typescript.html" class="header__pill-link" style="--pill-color:#03a9f4;">TypeScript</a><!--]--><a class="header__pill-link" href="https://github.com/nsznsznjsz/blog/edit/main/2019/12/08/basic-grammar-of-typescript.md" target="_blank">编辑此页</a></div><h1 class="my-6 z-30 text-white text-8xl font-medium">Typescript 基本语法</h1></div><div class="flex z-30"><div class="header__meta-item">发表于 2019-12-08</div><div class="header__meta-item">更新于 2021-3-20</div></div><div class="flex z-30"><div class="header__meta-item"> 分类于 <!--[--><span class="header__categories"><!--[--><a href="/categories/computer-science.html" class="header__category">计科</a><a href="/categories/computer-science/front-end.html" class="header__category">前端</a><!--]--></span><!--]--></div></div></div><!--]--></header><footer class="layout__footer"><!--[--><div class="flex flex-col items-center m-4 py-4 text-gray-400 text-sm select-none"><span>Copyright © 2021 – 2021 Celeste</span><span>Powered by <a href="https://vuepress.vuejs.org/" target="_blank" class="underline">Vuepress</a></span></div><!--]--></footer><nav class="layout__nav overflow-hidden z-50"><!--[--><div class="navbar navbar_transparent" style=""><ul class="flex"><li class="navbar__link"><a href="/" class="font-bold">CELESTE&#39;S BLOG</a></li></ul><ul class="flex"><!--[--><li class="navbar__link"><a href="/archives.html" class="">ARCHIVES</a></li><li class="navbar__link"><a href="/categories.html" class="">CATEGORIES</a></li><li class="navbar__link"><a href="/tags.html" class="">TAGS</a></li><li class="navbar__link"><a href="/about.html" class="">ABOUT</a></li><!--]--></ul></div><!--]--></nav><!----></div><!--]--></div>
+    <script type="module" src="/assets/app.cad05c30.js" defer></script>
+  </body>
+</html>
